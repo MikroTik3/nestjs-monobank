@@ -22,7 +22,7 @@
        ],
        "license": "MIT",
        "homepage": "https://nestjs-monobank.vercel.app",
-       "repository": "git@github.com:MikroTik2/nestjs-monobank.git",
+       "repository": "git@github.com:MikroTik3/nestjs-monobank.git",
        "main": "./dist/index.js",
        "types": "./dist/index.d.ts",
        "scripts": {

@@ -4,5 +4,5 @@ export const baseOptions: BaseLayoutProps = {
 	nav: {
 		title: 'NestJS Monobank',
 	},
-	githubUrl: 'https://github.com/MikroTik2/nestjs-monobank.git',
+	githubUrl: 'https://github.com/MikroTik3/nestjs-monobank.git',
 }

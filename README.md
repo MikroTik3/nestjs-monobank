@@ -11,7 +11,7 @@
 Якщо у вас виникли запитання або проблеми, не соромтеся звертатися до автора або створювати issues у репозиторії.
 
 - Контриб’ютори:
-    - Artur Docenko [MikroTik2](https://docenko.vercel.app)
+    - Artur Docenko [MikroTik3](https://docenko.vercel.app)
 
 ## Ліцензія
 
