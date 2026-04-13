@@ -1,0 +1,36 @@
+---
+description: Кроки для скидання суми оплати конкретної QR-каси
+title: Скидання суми QR-каси
+---
+
+У цьому розділі ми розглянемо, як скинути суму оплати конкретної QR-каси
+через API Monobank.
+
+### Виклик методу для скидання суми QR-каси
+
+Щоб видалити встановлену суму, потрібно скористатися методом
+`resetAmount`, передавши ідентифікатор QR-каси (`qrId`).
+
+```typescript
+import { Injectable } from '@nestjs/common';
+import { MonobankService } from 'nestjs-monobank';
+
+@Injectable()
+export class QrService {
+    constructor(private readonly monobankService: MonobankService) {}
+
+    async resetQrAmount() {
+        const qrId = 'XJ_DiM4rTd5V';
+
+        await this.monobankService.qr.resetAmount(qrId);
+        console.log('Суму було видалено');
+    }
+}
+```
+
+### Обробка відповіді від API
+
+Метод resetAmount не повертає тіло відповіді при успішному виконанні.
+Після виклику методу сума QR-каси буде скинута.
+
+QR-каса перейде у стан, де користувач може самостійно вводити суму (якщо це дозволено типом).

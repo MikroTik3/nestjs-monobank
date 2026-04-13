@@ -1,0 +1,38 @@
+{
+	"title": "Документація",
+	"pages": [
+		"---Початок роботи---",
+		"getting-started/installation",
+		"getting-started/introduction",
+
+		"---Платежі---",
+		"invoices/create-invoice",
+		"invoices/invoice-status",
+		"invoices/complete-hold",
+		"invoices/receipts",
+		"invoices/get-receipt",
+		"invoices/payment-direct",
+		"invoices/remove-invoice",
+		"invoices/cancel-invoice",
+
+		"---Мерчант---",
+              "merchant/detail",
+              "merchant/pubkey",
+
+              "---QR Code---",
+		"qr/get-details",
+		"qr/get-list",
+		"qr/reset-amount",
+              
+		"---Операції---",
+		"statements/statement",
+
+              "---Гаманець---",
+              "wallets/create-payment-token",
+              "wallets/get-card-token",
+              "wallets/delete-card-token",
+
+		"---Вебхуки---",
+		"webhooks/verify"
+	]
+}

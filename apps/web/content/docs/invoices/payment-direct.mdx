@@ -1,0 +1,69 @@
+---
+description: Кроки для проведення прямого платежу через Monobank
+title: Прямий платіж (Direct Payment)
+---
+
+У цьому розділі ми розглянемо, як провести прямий платіж через API Monobank
+без створення окремого рахунку.
+
+### Виклик методу для проведення платежу
+
+Щоб виконати платіж, потрібно скористатися методом `charge`,
+передавши об’єкт з необхідними даними (`CreateChargeRequest`).
+
+```typescript
+import { Injectable } from '@nestjs/common';
+import { MonobankService } from 'nestjs-monobank';
+
+@Injectable()
+export class PaymentService {
+    constructor(private readonly monobankService: MonobankService) {}
+
+    async createPayment() {
+        const data = {
+            amount: 1000,
+            ccy: 980,
+            cardData: {
+                pan: "1234567890123456",
+                exp: "1226",
+                cvv: 123
+            },
+            merchantPaymInfo: {
+                reference: "my_shop_order_28142",
+                destination: "Оплата за замовлення #28142",
+                basketOrder: [
+                    {
+                        name: "Товар1",
+                        qty: 2,
+                        sum: 500,
+                        icon: "https://example.com/images/product1.jpg",
+                        unit: "уп."
+                    }
+                ]
+            },
+            webhookUrl: "https://example.com/mono-webhook",
+            redirectUrl: "https://example.com/order-result",
+            paymentType: "debit",
+            initiationKind: "merchant"
+        };
+
+        const charge = await this.monobankService.invoice.charge(data);
+        return charge;
+    }
+}
+```
+
+<Callout title="Важливо знати:"> Прямі платежі вимагають дотримання стандартів безпеки (PCI DSS), оскільки ви працюєте з даними картки. Рекомендується використовувати цей метод лише за наявності відповідної сертифікації. </Callout> ```
+
+### Обробка відповіді від API
+
+Метод `charge` повертає об’єкт з інформацією про створений платіж.
+
+```json
+{
+    "invoiceId": "p2_9ZgpZVsl3", // унікальний ідентифікатор рахунку (invoice)
+    "status": "processing", // статус платежу (created, processing, hold, success, failure, reversed, expired)
+    "amount": 1000, // сума платежу в копійках (1000 = 10.00 грн)
+    "ccy": 980 // валюта платежу (код ISO 4217, 980 = гривня)
+}
+```

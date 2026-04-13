@@ -1,0 +1,42 @@
+---
+title: Список QR-кас
+description: Кроки для отримання списку QR-кас мерчанта
+---
+
+У цьому розділі ми розглянемо, як отримати список усіх QR-кас мерчанта через API Monobank.
+
+### Виклик методу для отримання списку QR-кас
+
+Щоб отримати список QR-кас, потрібно скористатися методом `getList`.
+
+```typescript
+import { Injectable } from '@nestjs/common';
+import { MonobankService } from 'nestjs-monobank';
+
+@Injectable()
+export class QrService {
+    constructor(private readonly monobankService: MonobankService) {}
+
+    async getQrList() {
+        const qrList = await this.monobankService.qr.getList();
+        return qrList;
+    }
+}
+```
+
+### Обробка відповіді від API
+
+Метод getList повертає об’єкт зі списком QR-кас.
+
+```json
+{
+    "list": [
+        {
+            "shortQrId": "AbC123", // короткий ідентифікатор QR-каси (зручно використовувати в посиланнях).
+            "qrId": "f3a9c1b2-45d6-7890-abcd-ef1234567890", // повний ідентифікатор QR-каси (використовується для API-запитів, наприклад встановлення суми).
+            "amountType": "FIXED", // тип суми QR-каси
+            "pageUrl": "https://pay.monobank.ua/AbC123" // посилання на сторінку оплати (можна відкрити або закодувати в QR-код).
+        }
+    ]
+}
+```
