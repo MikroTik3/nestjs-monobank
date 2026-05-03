@@ -1,7 +1,7 @@
 {
 	"name": "web",
 	"version": "0.0.1",
-       "private": false,
+	"private": false,
 	"scripts": {
 		"build": "pnpm prepare:docs && next build",
 		"dev": "next dev",
