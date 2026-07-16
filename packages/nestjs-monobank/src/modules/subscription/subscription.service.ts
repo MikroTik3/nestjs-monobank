@@ -26,11 +26,13 @@ export class SubscriptionService {
         * @example
         * const subscription = await this.monobankService.subscription.create({
         *   amount: 19900,
-        *   redirectUrl: 'https://example.com/success',
+        *   redirectUrl: 'https://example.com/payment/success',
         *   webHookUrls: {
-        *     interval: '1m',
-        *     validity: 2592000
+        *       chargeUrl: "https://example.com/api/v1/webhooks/monobank/charge"
+        *       statusUrl: "https://example.com/api/v1/webhooks/monobank/status"
         *   }
+        *   interval: '1m',
+        *   validity: 2592000
         * });
         *
         * console.log(subscription.pageUrl);
