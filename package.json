@@ -18,12 +18,12 @@
 		"build:web": "turbo run build --filter=web",
 		"build:packages": "turbo run build --filter=nestjs-monobank",
 		"publish:packages": "npm run build:packages && lerna publish",
-		"update": "npm update",
-		"upgrade:all": "npm i -g npm-check-updates && ncu -u && npm install"
+              "update": "pnpm update",
+              "upgrade:all": "pnpm dlx npm-check-updates -u && pnpm install"
 	},
 	"devDependencies": {
-		"baseline-browser-mapping": "^2.10.0",
-		"turbo": "^2.3.1"
+		"baseline-browser-mapping": "^2.11.0",
+		"turbo": "^2.10.5"
 	},
-	"packageManager": "pnpm@10.30.2+sha512.36cdc707e7b7940a988c9c1ecf88d084f8514b5c3f085f53a2e244c2921d3b2545bc20dd4ebe1fc245feec463bb298aecea7a63ed1f7680b877dc6379d8d0cb4"
+	"packageManager": "pnpm@11.15.1"
 }
