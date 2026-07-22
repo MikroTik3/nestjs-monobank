@@ -1,20 +1,18 @@
 {
-	"$schema": "https://json.schemastore.org/tsconfig",
-	"display": "Default",
 	"compilerOptions": {
-		"composite": false,
+		"module": "commonjs",
 		"declaration": true,
-		"declarationMap": true,
-		"esModuleInterop": true,
-		"forceConsistentCasingInFileNames": true,
-		"inlineSources": false,
-		"isolatedModules": true,
-		"moduleResolution": "node",
-		"noUnusedLocals": false,
-		"noUnusedParameters": false,
-		"preserveWatchOutput": true,
-		"skipLibCheck": true,
-		"strict": true
+		"noImplicitAny": false,
+		"removeComments": false,
+		"noLib": false,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"target": "es2017",
+		"sourceMap": false,
+		"rootDir": "./src",
+		"outDir": "./dist",
+		"skipLibCheck": true
 	},
-	"exclude": ["node_modules"]
+	"include": ["src/**/*"],
+	"exclude": ["node_modules", "**/*.spec.ts"]
 }
