@@ -1,0 +1,34 @@
+---
+title: Видалити підписку
+description: Кроки для деактивації регулярної підписки
+---
+
+У цьому розділі ми розглянемо, як видалити (деактивувати) регулярну підписку. Після виконання цього запиту підписка стане неактивною, а Monobank припинить виконувати автоматичні регулярні списання.
+
+### Виклик методу для видалення підписки
+
+Для видалення підписки достатньо передати її ідентифікатор (`subscriptionId`) у метод `removeSubscription` сервісу `MonobankService`.
+
+```typescript
+import { Injectable } from '@nestjs/common';
+import { MonobankService } from 'nestjs-monobank';
+
+@Injectable()
+export class SubscriptionService {
+     constructor(
+          private readonly monobankService: MonobankService
+     ) {}
+
+     async removeSubscription() {
+          await this.monobankService.subscription.removeSubscription(
+               'sub_9ZgpZVsl3'
+          );
+     }
+}
+```
+
+### Обробка відповіді від API
+
+Метод `removeSubscription` не повертає жодних даних. Якщо запит виконано успішно, підписку буде деактивовано.
+
+Після видалення підписки Monobank більше не виконуватиме автоматичні списання за цією підпискою. Якщо в майбутньому користувач захоче знову оформити регулярні платежі, необхідно створити нову підписку.

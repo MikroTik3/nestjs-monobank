@@ -6,33 +6,41 @@
 		"getting-started/introduction",
 
 		"---Платежі---",
-		"invoices/create-invoice",
-		"invoices/invoice-status",
-		"invoices/complete-hold",
-		"invoices/receipts",
-		"invoices/get-receipt",
-		"invoices/payment-direct",
-		"invoices/remove-invoice",
-		"invoices/cancel-invoice",
+		"invoice/create-invoice",
+		"invoice/invoice-status",
+		"invoice/complete-hold",
+		"invoice/receipts",
+		"invoice/get-receipt",
+		"invoice/payment-direct",
+		"invoice/remove-invoice",
+		"invoice/cancel-invoice",
+
+              "---Підписка---",
+              "subscription/create-subscription",
+              "subscription/edit-subscription",
+              "subscription/remove-subscription",
+              "subscription/subscription-client",
+              "subscription/subscription-history",
+              "subscription/subscription-status",
 
 		"---Мерчант---",
-              "merchant/detail",
-              "merchant/pubkey",
+		"merchant/detail",
+		"merchant/pubkey",
 
-              "---QR Code---",
+            "---QR Code---",
 		"qr/get-details",
 		"qr/get-list",
 		"qr/reset-amount",
               
 		"---Операції---",
-		"statements/statement",
+		"statement/statement",
 
-              "---Гаманець---",
-              "wallets/create-payment-token",
-              "wallets/get-card-token",
-              "wallets/delete-card-token",
+		"---Гаманець---",
+		"wallet/create-payment-token",
+		"wallet/get-card-token",
+		"wallet/delete-card-token",
 
 		"---Вебхуки---",
-		"webhooks/verify"
+		"webhook/verify"
 	]
 }

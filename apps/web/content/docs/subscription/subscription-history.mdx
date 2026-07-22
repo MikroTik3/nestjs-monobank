@@ -1,0 +1,81 @@
+---
+title: Перегляд історії платежів
+description: Кроки для отримання історії платежів за підпискою
+---
+
+У цьому розділі ми розглянемо, як отримати історію платежів за певною регулярною підпискою. Ми покажемо, як підготувати параметри запиту, викликати API Monobank та обробити відповідь від сервісу.
+
+### Підготовка параметрів запиту
+
+Для отримання історії платежів необхідно підготувати об'єкт `HistoryRequest`. Він містить ідентифікатор підписки, період, за який потрібно отримати інформацію, а також параметри пагінації.
+
+```typescript
+import { type HistoryRequest } from 'nestjs-monobank';
+
+const query: HistoryRequest = {
+     subscriptionId: 'sub_9ZgpZVsl3',
+     limit: 20,
+     page: 1,
+     dateFrom: '2024-06-01T00:00:00+03:00',
+     dateTo: '2024-06-30T23:59:59+03:00'
+};
+```
+
+### Виклик методу для отримання історії платежів
+
+Після підготовки параметрів можна скористатися методом `getHistory` із сервісу `MonobankService`.
+
+```typescript
+import { Injectable } from '@nestjs/common';
+import {
+     type HistoryRequest,
+     MonobankService
+} from 'nestjs-monobank';
+
+@Injectable()
+export class SubscriptionService {
+     constructor(
+          private readonly monobankService: MonobankService
+     ) {}
+
+     async getPaymentHistory() {
+          const query: HistoryRequest = {
+               subscriptionId: 'sub_9ZgpZVsl3',
+               limit: 20,
+               page: 1,
+               dateFrom: '2024-06-01T00:00:00+03:00',
+               dateTo: '2024-06-30T23:59:59+03:00'
+          };
+
+          const history =
+               await this.monobankService.subscription.getHistory(query);
+
+          return history;
+     }
+}
+```
+
+### Обробка відповіді від API
+
+У відповіді API повертає список платежів за підпискою та інформацію про пагінацію.
+
+```json
+{
+     "items": [
+          {
+               "amount": 4200,
+               "status": "success",
+               "chargedAt": "2024-06-01T14:15:22Z",
+               "ccy": 980
+          }
+     ],
+     "pagination": {
+          "totalItems": 10,
+          "itemsPerPage": 20,
+          "currentPage": 1,
+          "totalPages": 1
+     }
+}
+```
+
+Масив `items` містить інформацію про кожний платіж за підпискою, включаючи суму списання, статус платежу, дату проведення операції та код валюти. Об'єкт `pagination` містить інформацію про кількість платежів, сторінок та поточну сторінку, що дозволяє реалізувати посторінкову навігацію.

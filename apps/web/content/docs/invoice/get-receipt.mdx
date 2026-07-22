@@ -1,0 +1,39 @@
+---
+description: Кроки для отримання квитанції по рахунку
+title: Отримання квитанції
+---
+
+У цьому розділі ми розглянемо, як отримати квитанцію по рахунку
+через API Monobank.
+
+### Виклик методу для отримання квитанції
+
+Щоб отримати квитанцію, потрібно скористатися методом `getReceipt`,
+передавши унікальний ідентифікатор рахунку (`invoiceId`).
+
+```typescript
+import { Injectable } from '@nestjs/common';
+import { MonobankService } from 'nestjs-monobank';
+
+@Injectable()
+export class ReceiptService {
+    constructor(private readonly monobankService: MonobankService) {}
+
+    async getReceipt() {
+        const invoiceId = 'p2_9ZgpZVsl3';
+
+        const receipt = await this.monobankService.invoice.getReceipt(invoiceId);
+        return receipt;
+    }
+}
+```
+
+### Обробка відповіді від API
+
+Метод `getReceipt` повертає об’єкт з квитанцією у форматі Base64.
+
+```json
+{
+    "file": "JVBERi0xLjQKJcfs..." // Base64-закодований PDF-файл квитанції
+}
+```
